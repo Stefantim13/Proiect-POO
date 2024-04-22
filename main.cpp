@@ -31,8 +31,8 @@ public:
 class Platform
 {
     const double length = 100, width = 20;
+    double x,y;
     int type; /// tip de platforma (rezista la infinit, se distruge dupa ce sari o data pe ea, te propulseaza mai mult in sus...)
-    double x, y;
     sf::RectangleShape plat;
 
 public:
