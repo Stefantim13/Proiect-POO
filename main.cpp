@@ -7,7 +7,7 @@ class Camera
 {
     sf::View view;
     double view_speed = 0.1;
-    double currentY;
+    double currentY = 0;
 
 public:
     Camera(const sf::Vector2u &windowSize)
