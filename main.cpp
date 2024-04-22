@@ -36,7 +36,7 @@ class Platform
     sf::RectangleShape plat;
 
 public:
-    Platform(double x_, double y_, int type_ = 0) : type(type_), y(y_), x(x_)
+    Platform(double x_, double y_, int type_ = 0) : x(x_), y(y_), type(type_)
     {
         plat.setSize(sf::Vector2f(length, width));
         plat.setPosition(x, y);
@@ -137,9 +137,9 @@ public:
 class Game
 {
     Doodle doodle;
-    Camera camera;
     std::vector<Platform> platforms;
     sf::RenderWindow &window;
+    Camera camera;
     const int verticalSpacing = 200;
     const int platformCount = 100;
     double x, y;
