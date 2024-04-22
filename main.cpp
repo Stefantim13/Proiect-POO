@@ -10,7 +10,7 @@ class Camera
     double currentY = 0;
 
 public:
-    Camera(const sf::Vector2u &windowSize)
+    explicit Camera(const sf::Vector2u &windowSize)
     {
         view.setSize(static_cast<double>(windowSize.x), static_cast<double>(windowSize.y));
         view.setCenter(view.getSize() / 2.0f);
@@ -58,15 +58,6 @@ public:
         return y;
     }
 
-    double getLength()
-    {
-        return length;
-    }
-
-    double getWidth()
-    {
-        return width;
-    }
 
     sf::FloatRect getBounds() const
     {
@@ -154,7 +145,7 @@ class Game
     double x, y;
 
 public:
-    Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
+    explicit Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
     {
         generateInitialPlatforms();
     }
@@ -184,12 +175,7 @@ public:
             platform.draw(window);
         }
     }
-
-    std::vector<Platform> &getPlatforms()
-    {
-        return platforms;
-    }
-
+    
     void run()
     {
         while (window.isOpen())
