@@ -36,7 +36,7 @@ class Platform
     sf::RectangleShape plat;
 
 public:
-    Platform(double x_, double y_, int type_ = 0) : x(x_), y(y_), type(type_)
+    Platform(double x_, double y_, int type_ = 0) : type(type_), y(y_), x(x_)
     {
         plat.setSize(sf::Vector2f(length, width));
         plat.setPosition(x, y);
