@@ -7,7 +7,6 @@
 class Camera
 {
     sf::View view;
-    double view_speed = 0.1;
     double currentY = 0;
 
 public:
@@ -127,7 +126,6 @@ class Doodle
 
     const double dimension_x = 50, dimension_y = 100;
     const double gravity = 0.5;
-    const double jumpStrength = -16;
     double jump = 0;
     double x = 275, y = 800;
     double baseJumpStrength = -16;
