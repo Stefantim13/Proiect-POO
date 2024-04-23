@@ -41,8 +41,7 @@ class Platform
         Moving,
         Propulsive
     };
-    double x;
-    double y;
+    double y, x;
     PlatformType type;
     sf::RectangleShape plat;
     bool isDestroyed = false;
@@ -201,9 +200,9 @@ public:
 class Game
 {
     Doodle doodle;
+    sf::RenderWindow &window;
     Camera camera;
     std::vector<Platform> platforms;
-    sf::RenderWindow &window;
     const int verticalSpacing = 200;
     const int platformCount = 1000;
 
