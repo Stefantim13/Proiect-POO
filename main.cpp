@@ -8,10 +8,10 @@ class Camera
 {
     sf::View view;
     double view_speed = 0.1;
-    double currentY;
+    double currentY = 0;
 
 public:
-    Camera(const sf::Vector2u &windowSize)
+    explicit Camera(const sf::Vector2u &windowSize)
     {
         view.setSize(static_cast<double>(windowSize.x), static_cast<double>(windowSize.y));
         view.setCenter(view.getSize() / 2.0f);
@@ -122,7 +122,6 @@ public:
     double getLength() { return length; }
     double getWidth() { return width; }
     sf::FloatRect getBounds() const { return plat.getGlobalBounds(); }
-    bool isPropulsive() const { return type == Propulsive; }
 };
 
 class Doodle
@@ -207,11 +206,11 @@ class Game
     std::vector<Platform> platforms;
     sf::RenderWindow &window;
     const int verticalSpacing = 200;
-    const int platformCount = 100;
+    const int platformCount = 1000;
     double x, y;
 
 public:
-    Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
+    explicit Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
     {
         generateInitialPlatforms();
     }
