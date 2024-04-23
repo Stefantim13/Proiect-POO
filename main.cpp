@@ -42,7 +42,8 @@ class Platform
         Propulsive
     };
     PlatformType type;
-    double x, y;
+    double y;
+    double x;
     sf::RectangleShape plat;
     bool isDestroyed = false;
     double velocity = 0;
