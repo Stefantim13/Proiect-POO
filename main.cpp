@@ -41,7 +41,7 @@ class Platform
         Moving,
         Propulsive
     };
-    double y, x;
+    double x, y;
     PlatformType type;
     sf::RectangleShape plat;
     bool isDestroyed = false;
