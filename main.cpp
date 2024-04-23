@@ -205,7 +205,6 @@ class Game
     sf::RenderWindow &window;
     const int verticalSpacing = 200;
     const int platformCount = 1000;
-    double x, y;
 
 public:
     explicit Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
