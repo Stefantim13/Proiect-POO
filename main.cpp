@@ -119,8 +119,6 @@ public:
     }
     double getX() { return x; }
     double getY() { return y; }
-    double getLength() { return length; }
-    double getWidth() { return width; }
     sf::FloatRect getBounds() const { return plat.getGlobalBounds(); }
 };
 
@@ -224,8 +222,8 @@ public:
 
         for (int i = 1; i < platformCount; ++i)
         {
-            double x = randomX();
-            double y = platforms.back().getY() - verticalSpacing;
+            double Platform_x = randomX();
+            double Platform_y = platforms.back().getY() - verticalSpacing;
 
             Platform::PlatformType type;
             switch (type_dist(gen))
@@ -244,7 +242,7 @@ public:
                 break;
             }
 
-            platforms.emplace_back(x, y, type);
+            platforms.emplace_back(Platform_x, Platform_y, type);
         }
     }
     double randomX()
@@ -263,10 +261,6 @@ public:
         }
     }
 
-    std::vector<Platform> &getPlatforms()
-    {
-        return platforms;
-    }
 
     void run()
     {
