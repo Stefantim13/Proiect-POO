@@ -60,10 +60,6 @@ public:
         }
     }
 
-    int return_type()
-    {
-        return type;
-    }
 
     void move()
     {
