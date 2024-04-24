@@ -26,12 +26,16 @@ public:
     {
         return view;
     }
+
+    std::ostream& operator<<(const Camera& cam) {
+        std::cout << "Camera [Center: (" << cam.view.getCenter().x << ", " << cam.view.getCenter().y << ")]";
+    }
 };
 
 class Platform
 {
 
-    const double length = 100, width = 20;
+    double length = 100, width = 20;
     double x, y;
     int type; /// 0 - infinite; 1 - Destructible; 2 - Moving; 3 - Propulsive
     sf::RectangleShape plat;
@@ -111,13 +115,18 @@ public:
     double getX() { return x; }
     double getY() { return y; }
     sf::FloatRect getBounds() const { return plat.getGlobalBounds(); }
+
+    std::ostream& operator<<(const Platform& p) {
+    std::cout << "Platform [x: " << p.x << ", y: " << p.y << ", type: " << p.type
+       << ", isDestroyed: " << p.isDestroyed << "]";
+}
 };
 
 class Doodle
 {
 
-    const double dimension_x = 50, dimension_y = 100;
-    const double gravity = 0.5;
+    double dimension_x = 50, dimension_y = 100;
+    double gravity = 0.5;
     double jump = 0;
     double x = 275, y = 800;
     double baseJumpStrength = -16;
@@ -185,6 +194,9 @@ public:
     {
         return y;
     }
+    std::ostream& operator<<(const Doodle& d) {
+        std::cout << "Doodle [x: " << d.x << ", y: " << d.y << ", jump: " << d.jump << "]";
+    }
 };
 
 class Game
@@ -193,8 +205,8 @@ class Game
     sf::RenderWindow &window;
     Camera camera;
     std::vector<Platform> platforms;
-    const int verticalSpacing = 200;
-    const int platformCount = 1000;
+    int verticalSpacing = 200;
+    int platformCount = 1000;
     int type = 0;
 public:
     explicit Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
@@ -270,6 +282,29 @@ public:
             window.display();
         }
     }
+
+    Game(const Game& other): doodle(other.doodle), window(other.window), camera(other.camera), platforms(other.platforms),
+      verticalSpacing(other.verticalSpacing), platformCount(other.platformCount), type(other.type){};
+
+    Game& operator=(const Game& other)
+    {
+        if (this != &other) 
+        {
+            doodle = other.doodle;        
+            camera = other.camera;
+            platforms = other.platforms;
+            verticalSpacing = other.verticalSpacing;
+            platformCount = other.platformCount;
+            type = other.type;
+        }
+        return *this;
+    }
+
+    ~Game(){ std::cout << "Sterge";}
+
+    std::ostream& operator<<(const Game& game) {
+        std::cout << "Game [Number of Platforms: " << game.platforms.size() << ", Current Type: " << game.type << "]";
+    }   
 };
 
 int main()
