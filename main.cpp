@@ -30,48 +30,44 @@ public:
 
 class Platform
 {
-    friend class Game;
 
     const double length = 100, width = 20;
-    enum PlatformType
-    {
-        Infinite,
-        Destructible,
-        Moving,
-        Propulsive
-    };
     double x, y;
-    PlatformType type;
+    int type; /// 0 - infinite; 1 - Destructible; 2 - Moving; 3 - Propulsive
     sf::RectangleShape plat;
     bool isDestroyed = false;
     double velocity = 0;
 
 public:
-    Platform(double x_, double y_, PlatformType type_) : x(x_), y(y_), type(type_)
+    Platform(double x_, double y_, int type_) : x(x_), y(y_), type(type_)
     {
         plat.setSize(sf::Vector2f(length, width));
         plat.setPosition(x, y);
         plat.setFillColor(sf::Color::Green);
 
-        if (type == Moving)
+        if (type == 2)
         {
             velocity = 5;
             plat.setFillColor(sf::Color::Yellow);
         }
-        if (type == Propulsive)
+        if (type == 3)
         {
             plat.setFillColor(sf::Color::Blue);
         }
-        if (type == Destructible)
+        if (type == 1)
         {
             plat.setFillColor(sf::Color::White);
         }
     }
 
+    int return_type()
+    {
+        return type;
+    }
 
     void move()
     {
-        if (type == Moving)
+        if (type == 2)
         {
             x += velocity;
             if (x < 0 || x + length > 800)
@@ -85,7 +81,7 @@ public:
 
     void destroy()
     {
-        if (type == Destructible)
+        if (type == 1)
         {
             isDestroyed = true;
         }
@@ -106,11 +102,11 @@ public:
 
     bool isDestructible() const
     {
-        return type == Destructible;
+        return type == 1;
     }
     double propulsiveJumpMultiplier() const
     {
-        if (type == Propulsive)
+        if (type == 3)
         {
             return 2.0;
         }
@@ -203,7 +199,7 @@ class Game
     std::vector<Platform> platforms;
     const int verticalSpacing = 200;
     const int platformCount = 1000;
-
+    int type = 0;
 public:
     explicit Game(sf::RenderWindow &window_) : window(window_), camera(window_.getSize())
     {
@@ -211,7 +207,7 @@ public:
     }
     void generateInitialPlatforms()
     {
-        platforms.emplace_back(250, 950, Platform::Infinite);
+        platforms.emplace_back(250, 950, 0);
 
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -222,20 +218,19 @@ public:
             double Platform_x = randomX();
             double Platform_y = platforms.back().getY() - verticalSpacing;
 
-            Platform::PlatformType type;
             switch (type_dist(gen))
             {
             case 0:
-                type = Platform::Infinite;
+                type = 0;
                 break;
             case 1:
-                type = Platform::Destructible;
+                type = 1;
                 break;
             case 2:
-                type = Platform::Moving;
+                type = 2;
                 break;
             case 3:
-                type = Platform::Propulsive;
+                type = 3;
                 break;
             }
 
