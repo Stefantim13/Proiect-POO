@@ -27,8 +27,9 @@ public:
         return view;
     }
 
-    std::ostream& operator<<(const Camera& cam) {
-        std::cout << "Camera [Center: (" << cam.view.getCenter().x << ", " << cam.view.getCenter().y << ")]";
+    friend std::ostream& operator<<(std::ostream& os, const Camera& cam) {
+        os << "Camera [Center: (" << cam.view.getCenter().x << ", " << cam.view.getCenter().y << ")]";
+        return os;
     }
 };
 
@@ -116,10 +117,10 @@ public:
     double getY() { return y; }
     sf::FloatRect getBounds() const { return plat.getGlobalBounds(); }
 
-    std::ostream& operator<<(const Platform& p) {
-    std::cout << "Platform [x: " << p.x << ", y: " << p.y << ", type: " << p.type
-       << ", isDestroyed: " << p.isDestroyed << "]";
-}
+    friend std::ostream& operator<<(std::ostream& os ,const Platform& p) {
+        os << "Platform [x: " << p.x << ", y: " << p.y << ", type: " << p.type << ", isDestroyed: " << p.isDestroyed << "]";
+        return os;
+    }
 };
 
 class Doodle
@@ -194,8 +195,9 @@ public:
     {
         return y;
     }
-    std::ostream& operator<<(const Doodle& d) {
-        std::cout << "Doodle [x: " << d.x << ", y: " << d.y << ", jump: " << d.jump << "]";
+    friend std::ostream& operator<<(std::ostream& os,const Doodle& d) {
+        os << "Doodle [x: " << d.x << ", y: " << d.y << ", jump: " << d.jump << "]";
+        return os;
     }
 };
 
@@ -302,8 +304,9 @@ public:
 
     ~Game(){ std::cout << "Sterge";}
 
-    std::ostream& operator<<(const Game& game) {
-        std::cout << "Game [Number of Platforms: " << game.platforms.size() << ", Current Type: " << game.type << "]";
+    friend std::ostream& operator<<(std::ostream& os, const Game& game) {
+        os << "Game [Number of Platforms: " << game.platforms.size() << ", Current Type: " << game.type << "]";
+        return os;
     }   
 };
 
