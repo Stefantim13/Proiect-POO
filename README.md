@@ -1,6 +1,6 @@
 # DOODLE JUMP
 
-"Doodle Jump" este un joc captivant în care scopul principal este să ghizi un personaj numit "Doodler" să sară de pe o platformă pe alta, urcând cât mai sus posibil. Pe măsură ce progresezi, jocul devine mai rapid și mai dificil. Jocul este apreciat pentru grafica sa simplă, stilizată ca un schiță făcută cu creionul, și pentru mecanica sa de joc ușor de înțeles, dar provocatoare.
+Acest joc este o variantă simplificată a "Doodle Jump-ului". Jucătorul controlează un personaj denumit "Doodle", reprezentat printr-un dreptunghi roșu, care trebuie să sară pe platforme pentru a se menține în aer cât mai mult timp posibil. Platformele sunt de patru tipuri: infinite, destructibile, mișcătoare și propulsive, fiecare cu propriile caracteristici și culori specifice. Scopul jocului este de a ajunge cât mai sus posibil, evitând căderea de pe platforme.
 
 ### Important!
 Aveți voie cu cod generat de modele de limbaj la care nu ați contribuit semnificativ doar în folder-ul `generated`.
