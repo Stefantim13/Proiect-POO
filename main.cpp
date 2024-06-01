@@ -150,12 +150,9 @@ public:
 
     virtual void move() = 0;
     virtual void destroy() = 0;
-    virtual bool isDestructible() const = 0;
     virtual double propulsiveJumpMultiplier() const = 0;
     virtual std::unique_ptr<BasePlatform> clone() const = 0;
     
-    virtual std::string getType() const = 0;  
-
     void draw(sf::RenderWindow &window) const {
         if (!isDestroyed) {
             window.draw(plat);
@@ -188,9 +185,8 @@ public:
 
     void move() override {}
     void destroy() override {}
-    bool isDestructible() const override { return false; }
     double propulsiveJumpMultiplier() const override { return 1.0; }
-    std::string getType() const override { return "InfinitePlatform"; }  
+
 
     std::unique_ptr<BasePlatform> clone() const override {
         return std::make_unique<InfinitePlatform>(*this);
@@ -206,9 +202,8 @@ public:
 
     void move() override {}
     void destroy() override { isDestroyed = true; plat.setSize(sf::Vector2f(0, 0)); }
-    bool isDestructible() const override { return true; }
     double propulsiveJumpMultiplier() const override { return 1.0; }
-    std::string getType() const override { return "DestructiblePlatform"; }  
+
 
     std::unique_ptr<BasePlatform> clone() const override {
         return std::make_unique<DestructiblePlatform>(*this);
@@ -232,9 +227,8 @@ public:
     }
 
     void destroy() override {}
-    bool isDestructible() const override { return false; }
     double propulsiveJumpMultiplier() const override { return 1.0; }
-    std::string getType() const override { return "MovingPlatform"; }  
+
     std::unique_ptr<BasePlatform> clone() const override {
         return std::make_unique<MovingPlatform>(*this);
     }
@@ -249,9 +243,7 @@ public:
 
     void move() override {}
     void destroy() override {}
-    bool isDestructible() const override { return false; }
     double propulsiveJumpMultiplier() const override { return 2.0; }
-    std::string getType() const override { return "PropulsivePlatform"; } 
     std::unique_ptr<BasePlatform> clone() const override {
         return std::make_unique<PropulsivePlatform>(*this);
     }
@@ -365,7 +357,7 @@ public:
         double x = randomX();
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<> type_dist(0, 3); // Adjusted distribution
+        std::uniform_int_distribution<> type_dist(0, 3); 
         switch (type_dist(gen)) {
             case 0:
                 return std::make_unique<InfinitePlatform>(x, y);
