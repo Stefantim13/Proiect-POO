@@ -8,4 +8,4 @@ public:
 };
 
 
-#endif //OOP_HELPER_H
+#endif 
