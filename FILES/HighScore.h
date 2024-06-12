@@ -20,4 +20,4 @@ public:
     int getCurrentScore() const;
 };
 
-#endif // HIGHSCORE_H
+#endif

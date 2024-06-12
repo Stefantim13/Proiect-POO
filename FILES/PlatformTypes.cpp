@@ -76,3 +76,25 @@ double PropulsivePlatform::propulsiveJumpMultiplier() const {
 std::unique_ptr<BasePlatform> PropulsivePlatform::clone() const {
     return std::make_unique<PropulsivePlatform>(*this);
 }
+
+InvisiblePlatform::InvisiblePlatform(double x, double y) : BasePlatform(x, y) {
+    plat.setFillColor(sf::Color::Transparent); 
+}
+
+void InvisiblePlatform::move() {
+    if (clock.getElapsedTime().asSeconds() >= 0.5f) { 
+        isVisible = !isVisible; 
+        plat.setFillColor(isVisible ? sf::Color::Cyan : sf::Color::Transparent); 
+        clock.restart(); 
+    }
+}
+
+void InvisiblePlatform::destroy() {}
+
+double InvisiblePlatform::propulsiveJumpMultiplier() const {
+    return 1.0;
+}
+
+std::unique_ptr<BasePlatform> InvisiblePlatform::clone() const {
+    return std::make_unique<InvisiblePlatform>(*this); 
+}

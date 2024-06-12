@@ -17,4 +17,4 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Camera& cam);
 };
 
-#endif // CAMERA_H
+#endif

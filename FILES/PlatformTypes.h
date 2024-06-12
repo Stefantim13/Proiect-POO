@@ -39,4 +39,17 @@ public:
     std::unique_ptr<BasePlatform> clone() const override;
 };
 
+// noua clasa derivata
+class InvisiblePlatform : public BasePlatform {
+    sf::Clock clock; 
+    bool isVisible = true; 
+
+public:
+    InvisiblePlatform(double x, double y);
+    void move() override;
+    void destroy() override;
+    double propulsiveJumpMultiplier() const override;
+    std::unique_ptr<BasePlatform> clone() const override;
+};
+
 #endif

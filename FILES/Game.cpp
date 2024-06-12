@@ -28,7 +28,7 @@ std::unique_ptr<BasePlatform> Game::generateRandomPlatform(double y) {
     double x = randomX();
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> type_dist(0, 3); 
+    std::uniform_int_distribution<> type_dist(0, 4); 
     switch (type_dist(gen)) {
         case 0:
             return std::make_unique<InfinitePlatform>(x, y);
@@ -38,6 +38,8 @@ std::unique_ptr<BasePlatform> Game::generateRandomPlatform(double y) {
             return std::make_unique<MovingPlatform>(x, y);
         case 3:
             return std::make_unique<PropulsivePlatform>(x, y);
+        case 4:
+            return std::make_unique<InvisiblePlatform>(x, y);
         default:
             throw InvalidPlatformTypeException();
     }

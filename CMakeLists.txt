@@ -104,7 +104,7 @@ elseif(UNIX)
 endif()
 
 ###############################################################################
-file(GLOB OTHER_SOURCES "FILES/*.cpp" "FILES/*.h")
+file(GLOB OTHER_SOURCES "FILES/*.cpp" "FILES/*.h" "FILES/*.ttf")
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
 add_executable(${PROJECT_NAME}

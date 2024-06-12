@@ -18,4 +18,4 @@ public:
     const char* what() const noexcept override;
 };
 
-#endif // PLATFORM_EXCEPTION_H
+#endif 
